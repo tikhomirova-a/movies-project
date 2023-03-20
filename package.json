@@ -12,13 +12,11 @@
   },
   "lint-staged": {
     "**/*.{html,scss}": [
-      "prettier --write --ignore-unknown",
-      "git add"
+      "prettier --write --ignore-unknown"
     ],
     "**/*.ts": [
       "npx eslint",
-      "prettier --write --ignore-unknown",
-      "git add"
+      "prettier --write --ignore-unknown"
     ]
   },
   "private": true,
