@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CategoryApiService } from './category-api.service';
+import { TrendingCategoryApiService } from './category-api.service';
 
 @Component({
   selector: 'ez-category',
@@ -7,7 +7,7 @@ import { CategoryApiService } from './category-api.service';
   styleUrls: ['./category.component.scss'],
 })
 export class CategoryComponent {
-  constructor(private api: CategoryApiService) {}
+  constructor(private api: TrendingCategoryApiService) {}
 
   public categories$ = this.api.requestCategory('all', 'day');
 }
