@@ -1,18 +1,29 @@
 import { Injectable } from '@angular/core';
-import { Movie, Series, Person } from './types';
+import { Response, Movie, Series, Person } from './types';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { Observable, map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CategoryApiService {
-  public async requestCategory(
+  constructor(private readonly http: HttpClient) {}
+
+  public requestCategory(
     name: string,
     period: string
-  ): Promise<Array<Movie | Series | Person>> {
-    const response = await fetch(
-      `https://api.themoviedb.org/3/trending/${name}/${period}?api_key=09f328da5aa5d91f51978506a62cc80e`
-    );
-    const json = await response.json();
-    return json.results;
+  ): Observable<Array<Movie | Series | Person>> {
+    return this.http
+      .get<Response<Array<Movie | Series | Person>>>(
+        `https://api.themoviedb.org/3/trending/${name}/${period}`,
+        {
+          params: new HttpParams({
+            fromObject: {
+              api_key: '09f328da5aa5d91f51978506a62cc80e',
+            },
+          }),
+        }
+      )
+      .pipe(map((response) => response.results));
   }
 }
