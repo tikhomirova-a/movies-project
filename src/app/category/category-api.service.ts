@@ -6,7 +6,7 @@ import { Observable, map } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
-export class TrendingCategoryApiService {
+export class CategoryApiService {
   constructor(private readonly http: HttpClient) {}
 
   public requestCategory(
