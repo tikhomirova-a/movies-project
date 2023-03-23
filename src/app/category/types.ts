@@ -1,3 +1,8 @@
+// export type MediaTypeMovie = 'movie';
+// export type MediaTypeTV = 'tv';
+// export type MediaTypePerson = 'person';
+// TODO: add types for media types in interfaces below
+
 export interface Movie {
   adult: boolean;
   backdrop_path: string;

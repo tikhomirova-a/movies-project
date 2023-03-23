@@ -9,5 +9,5 @@ import { CategoryApiService } from './category-api.service';
 export class CategoryComponent {
   constructor(private api: CategoryApiService) {}
 
-  public categories$ = this.api.requestCategory('all', 'day');
+  public trendingContent$ = this.api.requestCategory('all', 'day');
 }

@@ -1,5 +1,18 @@
-<h1>Trending Category</h1>
-<div *ngFor="let category of categories$ | async">
-  <hr />
-  <p>{{ category.media_type }}</p>
-</div>
+<section>
+  <h1>Trending Category</h1>
+  <ul *ngFor="let item of trendingContent$ | async">
+    {{
+      item | json
+    }}
+
+    <!-- <ng-container *ngIf="item.media_type === 'movie'">
+      <ez-movie-card [movie]="item"></ez-movie-card>
+    </ng-container> -->
+
+    <!-- <ng-container [ngSwitch]="item.media_type">
+      <ez-movie-card *ngSwitchCase="'movie'" [movie]="item"></ez-movie-card>
+      <div *ngSwitchCase="'tv'"></div>
+      <div *ngSwitchCase="'person'"></div>
+    </ng-container> -->
+  </ul>
+</section>

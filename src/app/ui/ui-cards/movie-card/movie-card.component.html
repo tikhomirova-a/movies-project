@@ -1,0 +1,6 @@
+<article *ngIf="movie">
+  <h3>{{ movie.title }}</h3>
+  <p>{{ movie.original_title }}</p>
+  <p>{{ movie.overview }}</p>
+  <img [src]="movie.poster_path" [alt]="movie.title" />
+</article>
