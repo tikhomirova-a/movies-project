@@ -15,14 +15,7 @@ export class CategoryApiService {
   ): Observable<Array<Movie | Series | Person>> {
     return this.http
       .get<Response<Array<Movie | Series | Person>>>(
-        `https://api.themoviedb.org/3/trending/${name}/${period}`,
-        {
-          params: new HttpParams({
-            fromObject: {
-              api_key: '09f328da5aa5d91f51978506a62cc80e',
-            },
-          }),
-        }
+        `https://api.themoviedb.org/3/trending/${name}/${period}`
       )
       .pipe(map((response) => response.results));
   }
