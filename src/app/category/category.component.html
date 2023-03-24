@@ -1,18 +1,13 @@
-<section>
-  <h1>Trending Category</h1>
-  <ul *ngFor="let item of trendingContent$ | async">
-    {{
-      item | json
-    }}
-
-    <!-- <ng-container *ngIf="item.media_type === 'movie'">
-      <ez-movie-card [movie]="item"></ez-movie-card>
-    </ng-container> -->
-
-    <!-- <ng-container [ngSwitch]="item.media_type">
-      <ez-movie-card *ngSwitchCase="'movie'" [movie]="item"></ez-movie-card>
-      <div *ngSwitchCase="'tv'"></div>
-      <div *ngSwitchCase="'person'"></div>
-    </ng-container> -->
-  </ul>
-</section>
+<div class="page-grid" *ngIf="imagesConfig$ | async as config">
+  <section>
+    <h2 class="container">Trending Category</h2>
+    <ul class="container list">
+      <li class="list-item" *ngFor="let item of trendingContent$ | async">
+        <ez-movie-card
+          *ngIf="item.media_type === 'movie'"
+          [movie]="item"
+          [config]="config"></ez-movie-card>
+      </li>
+    </ul>
+  </section>
+</div>

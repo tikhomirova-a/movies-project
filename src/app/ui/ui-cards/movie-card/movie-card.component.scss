@@ -1,0 +1,35 @@
+:host {
+  display: contents;
+}
+
+.movie-card {
+  display: grid;
+  grid-template-rows: auto 1fr;
+}
+
+.image {
+  border-radius: 0.6rem;
+}
+
+.details {
+  position: relative;
+  padding: 0 1rem 0.3rem;
+  display: grid;
+  align-content: space-between;
+}
+
+.rating {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2rem;
+  min-height: 2rem;
+  border-radius: 0.6rem;
+  color: rgb(var(--ez-base-light));
+  background-color: rgb(var(--ez-violet-100));
+  border: 1px solid white;
+  transform: translate(20%, -50%);
+}

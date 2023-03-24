@@ -1,8 +1,3 @@
-// export type MediaTypeMovie = 'movie';
-// export type MediaTypeTV = 'tv';
-// export type MediaTypePerson = 'person';
-// TODO: add types for media types in interfaces below
-
 export interface Movie {
   adult: boolean;
   backdrop_path: string;
@@ -12,7 +7,7 @@ export interface Movie {
   original_title: string;
   overview: string;
   poster_path: string;
-  media_type: string;
+  media_type: 'movie';
   genre_ids: number[];
   popularity: number;
   release_date: Date;
@@ -30,7 +25,7 @@ export interface Series {
   original_name: string;
   overview: string;
   poster_path: string;
-  media_type: string;
+  media_type: 'tv';
   genre_ids: number[];
   popularity: number;
   first_air_date: Date;
@@ -44,7 +39,7 @@ export interface Person {
   id: number;
   name: string;
   original_name: string;
-  media_type: string;
+  media_type: 'person';
   popularity: number;
   gender: number;
   known_for_department: string;

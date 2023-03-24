@@ -1,6 +1,30 @@
-<article *ngIf="movie">
-  <h3>{{ movie.title }}</h3>
-  <p>{{ movie.original_title }}</p>
-  <p>{{ movie.overview }}</p>
-  <img [src]="movie.poster_path" [alt]="movie.title" />
+<article class="movie-card" *ngIf="movie">
+  <img
+    class="image"
+    *ngIf="config"
+    [src]="config.secure_base_url + config.poster_sizes[1] + movie.poster_path"
+    [srcset]="
+      config.secure_base_url +
+      config.poster_sizes[2] +
+      movie.poster_path +
+      ' ' +
+      config.poster_sizes[2].slice(1) +
+      'w, ' +
+      config.secure_base_url +
+      config.poster_sizes[3] +
+      movie.poster_path +
+      ' ' +
+      config.poster_sizes[3].slice(1) +
+      'w'
+    "
+    width="180"
+    height="270"
+    [alt]="movie.title" /><!-- todo: pipe for src and srcset -->
+  <div class="details">
+    <h3>{{ movie.title }}</h3>
+    <p class="font-pale font-small">
+      {{ movie.release_date | date : 'mediumDate' }}
+    </p>
+    <p class="rating">{{ movie.vote_average | number : '1.0-1' }}</p>
+  </div>
 </article>

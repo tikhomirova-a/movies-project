@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Images } from 'src/app/infrastructure/configuration/types';
 import { Movie } from '../../../category/types';
 
 @Component({
@@ -8,4 +9,5 @@ import { Movie } from '../../../category/types';
 })
 export class MovieCardComponent {
   @Input() public movie?: Movie;
+  @Input() public config?: Images;
 }
