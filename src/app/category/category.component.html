@@ -2,7 +2,9 @@
   <section>
     <h2 class="container">Trending Category</h2>
     <ul class="container list">
-      <li class="list-item" *ngFor="let item of trendingContent$ | async">
+      <li
+        class="list-item"
+        *ngFor="let item of trendingContent$ | async; trackBy: trackCategory">
         <ez-movie-card
           *ngIf="item.media_type === 'movie'"
           [movie]="item"
