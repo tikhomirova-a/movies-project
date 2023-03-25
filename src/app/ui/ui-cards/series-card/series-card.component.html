@@ -1,4 +1,4 @@
-<article class="card" *ngIf="movie">
+<article class="card" *ngIf="series">
   <!-- <ez-image
     [path]="movie.poster_path"
     type="poster"
@@ -8,20 +8,20 @@
     class="image"
     *ngIf="config"
     [src]="
-      movie.poster_path
+      series.poster_path
         | imageSource
           : config.secure_base_url
           : config.poster_sizes
           : imageWidth
     "
     [srcset]="
-      (movie.poster_path
+      (series.poster_path
         | imageSource
           : config.secure_base_url
           : config.poster_sizes
           : imageWidth) +
       ' 1x, ' +
-      (movie.poster_path
+      (series.poster_path
         | imageSource
           : config.secure_base_url
           : config.poster_sizes
@@ -30,12 +30,12 @@
     "
     [width]="imageWidth"
     [height]="imageWidth * aspectRatio"
-    [alt]="movie.title" />
+    [alt]="series.name" />
   <div class="details">
-    <h3>{{ movie.title }}</h3>
+    <h3>{{ series.name }}</h3>
     <p class="font-pale font-small">
-      {{ movie.release_date | date : 'mediumDate' }}
+      {{ series.first_air_date | date : 'mediumDate' }}
     </p>
-    <p class="rating">{{ movie.vote_average | number : '1.0-1' }}</p>
+    <p class="rating">{{ series.vote_average | number : '1.0-1' }}</p>
   </div>
 </article>

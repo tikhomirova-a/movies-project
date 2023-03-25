@@ -9,6 +9,10 @@
           *ngIf="item.media_type === 'movie'"
           [movie]="item"
           [config]="config"></ez-movie-card>
+        <ez-series-card
+          *ngIf="item.media_type === 'tv'"
+          [series]="item"
+          [config]="config"></ez-series-card>
       </li>
     </ul>
   </section>
