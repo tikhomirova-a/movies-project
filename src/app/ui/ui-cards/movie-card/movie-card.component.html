@@ -10,18 +10,18 @@
           : imageWidth
     "
     [srcset]="
-      config.secure_base_url +
-      config.poster_sizes[2] +
-      movie.poster_path +
-      ' ' +
-      config.poster_sizes[2].slice(1) +
-      'w, ' +
-      config.secure_base_url +
-      config.poster_sizes[3] +
-      movie.poster_path +
-      ' ' +
-      config.poster_sizes[3].slice(1) +
-      'w'
+      (movie.poster_path
+        | imageSource
+          : config.secure_base_url
+          : config.poster_sizes
+          : imageWidth) +
+      ' 1x, ' +
+      (movie.poster_path
+        | imageSource
+          : config.secure_base_url
+          : config.poster_sizes
+          : imageWidth * 2) +
+      ' 2x'
     "
     [width]="imageWidth"
     [height]="imageWidth * aspectRatio"
