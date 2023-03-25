@@ -1,4 +1,9 @@
 <article class="movie-card" *ngIf="movie">
+  <!-- <ez-image
+    [path]="movie.poster_path"
+    type="poster"
+    [width]="180"
+    [title]="movie.title"></ez-image> -->
   <img
     class="image"
     *ngIf="config"
@@ -25,7 +30,7 @@
     "
     [width]="imageWidth"
     [height]="imageWidth * aspectRatio"
-    [alt]="movie.title" /><!-- todo: pipe for srcset -->
+    [alt]="movie.title" />
   <div class="details">
     <h3>{{ movie.title }}</h3>
     <p class="font-pale font-small">
