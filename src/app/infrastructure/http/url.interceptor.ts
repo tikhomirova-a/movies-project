@@ -6,6 +6,8 @@ import {
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Response } from 'src/app/category/types';
+import { Configuration } from '../configuration/types';
 
 const API_URL_SHORTHAND = 'api/v3/';
 const API_URL = 'https://api.themoviedb.org/3/';
@@ -13,9 +15,9 @@ const API_URL = 'https://api.themoviedb.org/3/';
 @Injectable()
 export class UrlInterceptor implements HttpInterceptor {
   intercept(
-    req: HttpRequest<any>,
+    req: HttpRequest<unknown>,
     next: HttpHandler
-  ): Observable<HttpEvent<any>> {
+  ): Observable<HttpEvent<Response<unknown> | Configuration>> {
     let requestUrl = req.url;
 
     if (requestUrl.startsWith(API_URL_SHORTHAND)) {
