@@ -1,17 +1,4 @@
 :host {
-  display: contents;
-}
-
-.card {
-  display: grid;
-  grid-template-rows: auto 1fr;
-}
-
-.image {
-  border-radius: 0.6rem;
-}
-
-.details {
   position: relative;
   padding: 0 1rem 0.3rem;
   display: grid;

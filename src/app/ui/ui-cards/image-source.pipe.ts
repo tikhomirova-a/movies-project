@@ -1,4 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import { Images } from 'src/app/infrastructure/configuration/types';
 
 @Pipe({
   name: 'imageSource',
@@ -6,21 +7,24 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class ImageSourcePipe implements PipeTransform {
   transform(
     imgPath: string,
-    baseUrl: string,
-    sizes: string[],
-    imgWidth: number
+    imgWidth: number,
+    config: Images,
+    type: 'backdrop' | 'poster' | 'profile'
   ): string {
+    const sizes = config[`${type}_sizes`];
+
     let imgSize = sizes[0];
+
     for (const size of sizes) {
       if (size === 'original') {
         imgSize = 'original';
       }
-      if (Number(size.substring(1)) > imgWidth) {
+      if (Number(size.substring(1)) >= imgWidth) {
         imgSize = size;
         break;
       }
     }
 
-    return `${baseUrl}${imgSize}${imgPath}`;
+    return `${config.secure_base_url}${imgSize}${imgPath}`;
   }
 }

@@ -1,20 +1,18 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MovieCardComponent } from './movie-card/movie-card.component';
+import { CardComponent } from './card/card.component';
 import { ImageComponent } from './image/image.component';
 import { ImageSourcePipe } from './image-source.pipe';
-import { SeriesCardComponent } from './series-card/series-card.component';
-import { PersonCardComponent } from './person-card/person-card.component';
+import { CardDetailsComponent } from './card-details/card-details.component';
 
 @NgModule({
   declarations: [
-    MovieCardComponent,
+    CardComponent,
     ImageSourcePipe,
     ImageComponent,
-    SeriesCardComponent,
-    PersonCardComponent,
+    CardDetailsComponent,
   ],
   imports: [CommonModule],
-  exports: [MovieCardComponent, SeriesCardComponent, PersonCardComponent],
+  exports: [CardComponent, ImageComponent, CardDetailsComponent],
 })
 export class UiCardsModule {}

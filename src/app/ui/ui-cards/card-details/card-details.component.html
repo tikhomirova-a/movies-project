@@ -1,0 +1,5 @@
+<h3>{{ title }}</h3>
+<p class="font-pale font-small">
+  <ng-content select="note"></ng-content>
+</p>
+<p class="rating" *ngIf="rating">{{ rating | number : '1.0-1' }}</p>

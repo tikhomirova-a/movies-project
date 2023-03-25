@@ -1,22 +1,13 @@
-<ng-container *ngIf="imagesConfig$ | async as config">
-  <img
-    *ngIf="path"
-    class="image"
-    [src]="
-      path | imageSource : config.secure_base_url : config.poster_sizes : width
-    "
-    [srcset]="
-      (path
-        | imageSource : config.secure_base_url : config.poster_sizes : width) +
-      ' 1x, ' +
-      (path
-        | imageSource
-          : config.secure_base_url
-          : config.poster_sizes
-          : width * 2) +
-      ' 2x'
-    "
-    [width]="width"
-    [height]="width * aspectRatio"
-    [alt]="title" />
-</ng-container>
+<img
+  *ngIf="path && config && type"
+  class="image"
+  [src]="path | imageSource : width : config : type"
+  [srcset]="
+    (path | imageSource : width : config : type) +
+    ' 1x, ' +
+    (path | imageSource : width * 2 : config : type) +
+    ' 2x'
+  "
+  [width]="width"
+  [height]="width * aspectRatio"
+  [alt]="title" />
