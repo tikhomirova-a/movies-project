@@ -13,6 +13,10 @@
           *ngIf="item.media_type === 'tv'"
           [series]="item"
           [config]="config"></ez-series-card>
+        <ez-person-card
+          *ngIf="item.media_type === 'person'"
+          [person]="item"
+          [config]="config"></ez-person-card>
       </li>
     </ul>
   </section>
