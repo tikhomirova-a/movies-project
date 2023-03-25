@@ -10,4 +10,6 @@ import { Movie } from '../../../category/types';
 export class MovieCardComponent {
   @Input() public movie?: Movie;
   @Input() public config?: Images;
+  public readonly imageWidth = 180;
+  public readonly aspectRatio = 1.5;
 }

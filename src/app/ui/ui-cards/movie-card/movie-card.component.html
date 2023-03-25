@@ -2,7 +2,13 @@
   <img
     class="image"
     *ngIf="config"
-    [src]="config.secure_base_url + config.poster_sizes[1] + movie.poster_path"
+    [src]="
+      movie.poster_path
+        | imageSource
+          : config.secure_base_url
+          : config.poster_sizes
+          : imageWidth
+    "
     [srcset]="
       config.secure_base_url +
       config.poster_sizes[2] +
@@ -17,9 +23,9 @@
       config.poster_sizes[3].slice(1) +
       'w'
     "
-    width="180"
-    height="270"
-    [alt]="movie.title" /><!-- todo: pipe for src and srcset -->
+    [width]="imageWidth"
+    [height]="imageWidth * aspectRatio"
+    [alt]="movie.title" /><!-- todo: pipe for srcset -->
   <div class="details">
     <h3>{{ movie.title }}</h3>
     <p class="font-pale font-small">
