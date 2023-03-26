@@ -16,7 +16,12 @@ export class CategoryComponent {
 
   public imagesConfig$ = this.configApi.requestConfiguration();
 
-  public trendingContent$ = this.categoryApi.requestCategory('all', 'day');
+  public trendingContent$ = this.categoryApi.requestTrendingCategory(
+    'all',
+    'day'
+  );
+
+  public popularContent$ = this.categoryApi.requestPopular();
 
   public trackCategory(
     _: number,

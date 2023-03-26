@@ -1,49 +1,88 @@
 <div class="page-grid" *ngIf="imagesConfig$ | async as config">
   <section>
-    <h2 class="container">Trending Category</h2>
+    <h2 class="container">Trending</h2>
     <ul class="container list">
       <li
         class="list-item"
-        *ngFor="let item of trendingContent$ | async; trackBy: trackCategory">
-        <ez-card *ngIf="item.media_type === 'movie'">
-          <ez-image
-            [path]="item.poster_path"
-            type="poster"
-            [title]="item.title"
-            [config]="config"></ez-image>
-          <ez-card-details [title]="item.title" [rating]="item.vote_average">
-            <ng-container ngProjectAs="note">
-              {{ item.release_date | date : 'mediumDate' }}
-            </ng-container>
-          </ez-card-details>
-        </ez-card>
-
-        <ez-card *ngIf="item.media_type === 'tv'">
-          <ez-image
-            [path]="item.poster_path"
-            type="poster"
-            [title]="item.name"
-            [config]="config"></ez-image>
-          <ez-card-details [title]="item.name" [rating]="item.vote_average">
-            <ng-container ngProjectAs="note">
-              {{ item.first_air_date | date : 'mediumDate' }}
-            </ng-container>
-          </ez-card-details>
-        </ez-card>
-
-        <ez-card *ngIf="item.media_type === 'person'">
-          <ez-image
-            [path]="item.profile_path"
-            type="profile"
-            [title]="item.name"
-            [config]="config"></ez-image>
-          <ez-card-details [title]="item.name" [rating]="item.popularity">
-            <ng-container ngProjectAs="note">
-              {{ item.known_for_department }}
-            </ng-container>
-          </ez-card-details>
-        </ez-card>
+        *ngFor="let item of trendingContent$ | async; trackBy: trackCategory"
+        [ngSwitch]="item.media_type">
+        <ng-container
+          *ngSwitchCase="'movie'"
+          [ngTemplateOutlet]="movieCard"
+          [ngTemplateOutletContext]="{ $implicit: item }"></ng-container>
+        <ng-container
+          *ngSwitchCase="'tv'"
+          [ngTemplateOutlet]="seriesCard"
+          [ngTemplateOutletContext]="{ $implicit: item }"></ng-container>
+        <ng-container
+          *ngSwitchCase="'person'"
+          [ngTemplateOutlet]="personCard"
+          [ngTemplateOutletContext]="{ $implicit: item }"></ng-container>
       </li>
     </ul>
   </section>
+
+  <section>
+    <h2 class="container">Popular</h2>
+    <ul class="container list">
+      <li
+        class="list-item"
+        *ngFor="let item of popularContent$ | async; trackBy: trackCategory"
+        [ngSwitch]="item.media_type">
+        <ng-container
+          *ngSwitchCase="'movie'"
+          [ngTemplateOutlet]="movieCard"
+          [ngTemplateOutletContext]="{ $implicit: item }"></ng-container>
+        <ng-container
+          *ngSwitchCase="'tv'"
+          [ngTemplateOutlet]="seriesCard"
+          [ngTemplateOutletContext]="{ $implicit: item }"></ng-container>
+      </li>
+    </ul>
+  </section>
+
+  <ng-template #movieCard let-item>
+    <ez-card>
+      <ez-image
+        [path]="item.poster_path"
+        type="poster"
+        [title]="item.title"
+        [config]="config"></ez-image>
+      <ez-card-details [title]="item.title" [rating]="item.vote_average">
+        <ng-container ngProjectAs="note">
+          {{ item.release_date | date : 'mediumDate' }}
+        </ng-container>
+      </ez-card-details>
+    </ez-card>
+  </ng-template>
+
+  <ng-template #seriesCard let-item>
+    <ez-card>
+      <ez-image
+        [path]="item.poster_path"
+        type="poster"
+        [title]="item.name"
+        [config]="config"></ez-image>
+      <ez-card-details [title]="item.name" [rating]="item.vote_average">
+        <ng-container ngProjectAs="note">
+          {{ item.first_air_date | date : 'mediumDate' }}
+        </ng-container>
+      </ez-card-details>
+    </ez-card>
+  </ng-template>
+
+  <ng-template #personCard let-item>
+    <ez-card>
+      <ez-image
+        [path]="item.profile_path"
+        type="profile"
+        [title]="item.name"
+        [config]="config"></ez-image>
+      <ez-card-details [title]="item.name" [rating]="item.popularity">
+        <ng-container ngProjectAs="note">
+          {{ item.known_for_department }}
+        </ng-container>
+      </ez-card-details>
+    </ez-card>
+  </ng-template>
 </div>
