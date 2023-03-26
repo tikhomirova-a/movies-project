@@ -41,6 +41,21 @@
     </ul>
   </section>
 
+  <section>
+    <h2 class="container">Upcoming Movies</h2>
+    <ul class="container list">
+      <li
+        class="list-item"
+        *ngFor="let item of upcomingContent$ | async; trackBy: trackCategory">
+        <ng-container
+          *ngTemplateOutlet="
+            movieCard;
+            context: { $implicit: item }
+          "></ng-container>
+      </li>
+    </ul>
+  </section>
+
   <ng-template #movieCard let-item>
     <ez-card>
       <ez-image

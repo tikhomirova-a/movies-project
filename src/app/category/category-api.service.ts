@@ -34,6 +34,12 @@ export class CategoryApiService {
       .pipe(map((response) => response.results));
   }
 
+  public requestUpcomingMovies(): Observable<Array<Movie>> {
+    return this.http
+      .get<Response<Array<Movie>>>('api/v3/movie/upcoming')
+      .pipe(map((response) => response.results));
+  }
+
   private readonly popularMovies$ = this.http
     .get<Response<Array<Movie>>>('api/v3/movie/popular')
     .pipe(map((response) => toMovies(response.results)));

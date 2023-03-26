@@ -23,6 +23,8 @@ export class CategoryComponent {
 
   public popularContent$ = this.categoryApi.requestPopular();
 
+  public upcomingContent$ = this.categoryApi.requestUpcomingMovies();
+
   public trackCategory(
     _: number,
     element: Movie | Series | Person
