@@ -1,0 +1,15 @@
+<ng-container *ngIf="config$ | async as config">
+  <img
+    *ngIf="path && type"
+    class="image"
+    [src]="path | imageSource : width : config : type"
+    [srcset]="
+      (path | imageSource : width : config : type) +
+      ' 1x, ' +
+      (path | imageSource : width * 2 : config : type) +
+      ' 2x'
+    "
+    [width]="width"
+    [height]="width * aspectRatio"
+    [alt]="title" />
+</ng-container>

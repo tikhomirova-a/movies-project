@@ -1,0 +1,14 @@
+:host {
+  display: contents;
+}
+
+.card {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  grid-template-columns: min-content;
+}
+
+.image-wrapper {
+  overflow: hidden;
+  border-radius: 0.6rem;
+}
