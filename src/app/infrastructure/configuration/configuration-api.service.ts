@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, map } from 'rxjs';
+import { Observable, map, shareReplay } from 'rxjs';
 import { Configuration, Images } from './types';
 
 @Injectable({
@@ -9,9 +9,14 @@ import { Configuration, Images } from './types';
 export class ConfigurationApiService {
   constructor(private readonly http: HttpClient) {}
 
+  private configuration$: Observable<Images> = this.http
+    .get<Configuration>('api/v3/configuration')
+    .pipe(
+      shareReplay(),
+      map((response) => response.images)
+    );
+
   public requestConfiguration(): Observable<Images> {
-    return this.http
-      .get<Configuration>('api/v3/configuration')
-      .pipe(map((response) => response.images));
+    return this.configuration$;
   }
 }

@@ -40,16 +40,23 @@ export class CategoryApiService {
       .pipe(map((response) => response.results));
   }
 
-  private readonly popularMovies$ = this.http
-    .get<Response<Array<Movie>>>('api/v3/movie/popular')
-    .pipe(map((response) => toMovies(response.results)));
+  private requestPopularMovies(): Observable<Array<Movie>> {
+    return this.http
+      .get<Response<Array<Movie>>>('api/v3/movie/popular')
+      .pipe(map((response) => toMovies(response.results)));
+  }
 
-  private readonly popularSeries$ = this.http
-    .get<Response<Array<Series>>>('api/v3/tv/popular')
-    .pipe(map((response) => toSeries(response.results)));
+  private requestPopularSeries(): Observable<Array<Series>> {
+    return this.http
+      .get<Response<Array<Series>>>('api/v3/tv/popular')
+      .pipe(map((response) => toSeries(response.results)));
+  }
 
   public requestPopular(): Observable<Array<Movie | Series>> {
-    return forkJoin([this.popularMovies$, this.popularSeries$]).pipe(
+    return forkJoin([
+      this.requestPopularMovies(),
+      this.requestPopularSeries(),
+    ]).pipe(
       map(
         (response: [Movie[], Series[]]): Array<Movie | Series> =>
           response.flat()

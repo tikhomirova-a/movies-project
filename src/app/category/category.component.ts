@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { ConfigurationApiService } from '../infrastructure/configuration/configuration-api.service';
 import { CategoryApiService } from './category-api.service';
 import { Movie, Person, Series } from './types';
 
@@ -9,12 +8,7 @@ import { Movie, Person, Series } from './types';
   styleUrls: ['./category.component.scss'],
 })
 export class CategoryComponent {
-  constructor(
-    private categoryApi: CategoryApiService,
-    private configApi: ConfigurationApiService
-  ) {}
-
-  public imagesConfig$ = this.configApi.requestConfiguration();
+  constructor(private categoryApi: CategoryApiService) {}
 
   public trendingContent$ = this.categoryApi.requestTrendingCategory(
     'all',
