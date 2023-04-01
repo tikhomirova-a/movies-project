@@ -1,9 +1,9 @@
 <div class="page-grid">
   <section>
     <h2 class="container">Trending</h2>
-    <ul class="container list">
+    <ul class="container scroll-list">
       <li
-        class="list-item"
+        class="scroll-list-item"
         *ngFor="let item of trendingContent$ | async; trackBy: trackCategory">
         <ez-movie-card
           *ngIf="item.media_type === 'movie'"
@@ -20,9 +20,9 @@
 
   <section>
     <h2 class="container">Popular</h2>
-    <ul class="container list">
+    <ul class="container scroll-list">
       <li
-        class="list-item"
+        class="scroll-list-item"
         *ngFor="let item of popularContent$ | async; trackBy: trackCategory"
         [ngSwitch]="item.media_type">
         <ez-movie-card
@@ -37,9 +37,9 @@
 
   <section>
     <h2 class="container">Upcoming Movies</h2>
-    <ul class="container list">
+    <ul class="container scroll-list">
       <li
-        class="list-item"
+        class="scroll-list-item"
         *ngFor="let item of upcomingContent$ | async; trackBy: trackCategory">
         <ez-movie-card [movie]="item"></ez-movie-card>
       </li>

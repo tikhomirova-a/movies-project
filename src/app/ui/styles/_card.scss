@@ -1,0 +1,11 @@
+.card-link {
+  border: 0.1rem solid transparent;
+  border-radius: 0.8rem;
+  transition: border-color 0.3s;
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      border-color: rgb(var(--ez-violet-400));
+    }
+  }
+}

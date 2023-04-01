@@ -1,0 +1,47 @@
+<ng-container *ngIf="details$ | async as details">
+  <section class="container details">
+    <div>
+      <ez-image
+        [path]="details.poster_path"
+        type="poster"
+        [width]="300"
+        [title]="details.title"></ez-image>
+    </div>
+    <div class="description">
+      <h1>{{ details.title }}</h1>
+      <p class="font-pale font-small">
+        {{ details.release_date | date : 'shortDate' }}
+      </p>
+      <ul class="genres font-small">
+        <li *ngFor="let genre of details.genres">{{ genre.name }}</li>
+      </ul>
+      <p class="font-500">Overview</p>
+      <p>{{ details.overview }}</p>
+    </div>
+  </section>
+  <section>
+    <h2 class="container">Cast</h2>
+    <ul class="container scroll-list">
+      <li class="scroll-list-item" *ngFor="let person of cast$ | async">
+        <ez-person-card [person]="person"></ez-person-card>
+      </li>
+    </ul>
+  </section>
+  <section>
+    <h2 class="container">Crew</h2>
+    <ul class="container scroll-list">
+      <li class="scroll-list-item" *ngFor="let person of crew$ | async">
+        <ez-person-card [person]="person"></ez-person-card>
+      </li>
+    </ul>
+  </section>
+</ng-container>
+
+<!-- title,
+  description,
+  release date,
+  genres,
+  list of actors (cast),
+  and crew of the selected movie.
+  Users should also be able to rate the movie from the same page.
+ -->

@@ -6,7 +6,7 @@ import {
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Response } from 'src/app/category/types';
+import { Response } from './types';
 import { Configuration } from '../configuration/types';
 
 const API_URL_SHORTHAND = 'api/v3/';
