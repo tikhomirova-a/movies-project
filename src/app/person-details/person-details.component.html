@@ -1,0 +1,46 @@
+<ng-container *ngIf="person$ | async as person">
+  <section class="container details">
+    <div>
+      <ez-image
+        [path]="person.profile_path"
+        type="profile"
+        [width]="300"></ez-image>
+    </div>
+    <div class="description">
+      <h1>{{ person.name }}</h1>
+      <p class="font-pale font-small">
+        Birthday: {{ person.birthday | date : 'shortDate' }}
+      </p>
+      <p class="genres font-small" *ngIf="person.known_for_department">
+        Departments:
+        {{ person.known_for_department }}
+      </p>
+      <p class="font-500">Biography</p>
+      <p>{{ person.biography }}</p>
+    </div>
+  </section>
+  <section>
+    <h2 class="container">Known For</h2>
+    <ul class="container scroll-list">
+      <li class="scroll-list-item" *ngFor="let item of credits$ | async">
+        <ez-movie-card *ngIf="item.media_type === 'movie'" [movie]="item">
+          <ng-container ngProjectAs="additional"
+            >As {{ item.character }}</ng-container
+          >
+        </ez-movie-card>
+        <ez-series-card *ngIf="item.media_type === 'tv'" [series]="item">
+          <ng-container ngProjectAs="additional"
+            >As {{ item.character }}</ng-container
+          >
+        </ez-series-card>
+      </li>
+    </ul>
+  </section>
+</ng-container>
+
+<!-- The person details page must show
+  the biography,
+  date of birth,
+  and what the person is known for.
+  The page should also have a list of movies or TV series
+  where the person took part with their respective roles. -->

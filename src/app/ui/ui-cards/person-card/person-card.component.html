@@ -1,11 +1,13 @@
-<ez-card *ngIf="person">
-  <ez-image
-    [path]="person.profile_path"
-    type="profile"
-    [title]="person.name"></ez-image>
-  <ez-card-details [title]="person.name" [rating]="person.popularity">
-    <ng-container ngProjectAs="note">
-      {{ person.known_for_department }}
-    </ng-container>
-  </ez-card-details>
-</ez-card>
+<a *ngIf="person" class="card-link" [routerLink]="['/', 'person', person.id]">
+  <ez-card>
+    <ez-image
+      [path]="person.profile_path"
+      type="profile"
+      [title]="person.name"></ez-image>
+    <ez-card-details [title]="person.name" [rating]="person.popularity">
+      <ng-container ngProjectAs="note">
+        {{ person.known_for_department }}
+      </ng-container>
+    </ez-card-details>
+  </ez-card>
+</a>

@@ -9,5 +9,6 @@
         {{ series.first_air_date | date : 'mediumDate' }}
       </ng-container>
     </ez-card-details>
+    <ng-content select="[additional]"></ng-content>
   </ez-card>
 </a>
