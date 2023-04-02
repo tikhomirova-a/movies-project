@@ -10,7 +10,7 @@ const routes: Routes = [
     component: CategoryComponent,
   },
   {
-    path: 'movie',
+    path: ':media',
     children: [
       {
         path: ':id',

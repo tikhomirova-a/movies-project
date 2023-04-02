@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { MovieDetailsApiService } from './movie-details-api.service';
 import { ActivatedRoute } from '@angular/router';
 import { EMPTY, Observable, map, shareReplay } from 'rxjs';
-import { Credits, MovieDetails } from './types';
+import { Credits, MovieDetails, SeriesDetails } from './types';
 
 @Component({
   selector: 'ez-movie-details',
@@ -15,9 +15,10 @@ export class MovieDetailsComponent {
     private readonly activatedRoute: ActivatedRoute
   ) {}
 
-  private id = this.activatedRoute.snapshot.paramMap.get('id');
+  private readonly id = this.activatedRoute.snapshot.paramMap.get('id');
 
-  // private id$ = this.activatedRoute.paramMap.subscribe(paramMap => paramMap.get('id'));
+  private readonly mediaType =
+    this.activatedRoute.snapshot.paramMap.get('media');
 
   public details$ = this.requestDetails();
 
@@ -27,17 +28,17 @@ export class MovieDetailsComponent {
 
   public crew$ = this.credits$.pipe(map((response) => response.crew));
 
-  private requestDetails(): Observable<MovieDetails> {
-    if (!this.id) {
+  private requestDetails(): Observable<MovieDetails | SeriesDetails> {
+    if (!this.id || (this.mediaType !== 'movie' && this.mediaType !== 'tv')) {
       return EMPTY;
     }
-    return this.detailsApi.requestMovieDetails(this.id);
+    return this.detailsApi.requestDetails(this.id, this.mediaType);
   }
 
   private requestCredits(): Observable<Credits> {
-    if (!this.id) {
+    if (!this.id || (this.mediaType !== 'movie' && this.mediaType !== 'tv')) {
       return EMPTY;
     }
-    return this.detailsApi.requestMovieCredits(this.id);
+    return this.detailsApi.requestCredits(this.id, this.mediaType);
   }
 }

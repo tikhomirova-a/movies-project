@@ -1,24 +1,28 @@
 <ng-container *ngIf="details$ | async as details">
-  <section class="container details">
-    <div>
-      <ez-image
-        [path]="details.poster_path"
-        type="poster"
-        [width]="300"
-        [title]="details.title"></ez-image>
-    </div>
-    <div class="description">
-      <h1>{{ details.title }}</h1>
-      <p class="font-pale font-small">
-        {{ details.release_date | date : 'shortDate' }}
-      </p>
-      <ul class="genres font-small">
-        <li *ngFor="let genre of details.genres">{{ genre.name }}</li>
-      </ul>
-      <p class="font-500">Overview</p>
-      <p>{{ details.overview }}</p>
-    </div>
-  </section>
+  <ez-details-section
+    *ngIf="details.media_type === 'movie'"
+    [title]="details.title"
+    [genres]="details.genres"
+    [date]="details.release_date"
+    [overview]="details.overview">
+    <ez-image
+      [path]="details.poster_path"
+      type="poster"
+      [width]="300"
+      [title]="details.title"></ez-image>
+  </ez-details-section>
+  <ez-details-section
+    *ngIf="details.media_type === 'tv'"
+    [title]="details.name"
+    [genres]="details.genres"
+    [date]="details.first_air_date"
+    [overview]="details.overview">
+    <ez-image
+      [path]="details.poster_path"
+      type="poster"
+      [width]="300"
+      [title]="details.name"></ez-image>
+  </ez-details-section>
   <section>
     <h2 class="container">Cast</h2>
     <ul class="container scroll-list">

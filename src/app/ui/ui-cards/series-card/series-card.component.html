@@ -1,11 +1,13 @@
-<ez-card *ngIf="series">
-  <ez-image
-    [path]="series.poster_path"
-    type="poster"
-    [title]="series.name"></ez-image>
-  <ez-card-details [title]="series.name" [rating]="series.vote_average">
-    <ng-container ngProjectAs="note">
-      {{ series.first_air_date | date : 'mediumDate' }}
-    </ng-container>
-  </ez-card-details>
-</ez-card>
+<a class="card-link" *ngIf="series" [routerLink]="['/', 'tv', series.id]">
+  <ez-card>
+    <ez-image
+      [path]="series.poster_path"
+      type="poster"
+      [title]="series.name"></ez-image>
+    <ez-card-details [title]="series.name" [rating]="series.vote_average">
+      <ng-container ngProjectAs="note">
+        {{ series.first_air_date | date : 'mediumDate' }}
+      </ng-container>
+    </ez-card-details>
+  </ez-card>
+</a>
