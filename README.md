@@ -1,5 +1,9 @@
 # MoviesProject
 
+You can view the latest deployed version [here](https://tikhomirova-a.github.io/movies-project/).
+
+---
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.1.
 
 ## Development server
