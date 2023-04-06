@@ -1,0 +1,13 @@
+<ez-details-section
+  *ngIf="details$ | async as details"
+  [title]="details.name"
+  [genres]="details.genres"
+  [date]="details.first_air_date"
+  [overview]="details.overview">
+  <ez-image
+    [path]="details.poster_path"
+    type="poster"
+    [width]="300"
+    [title]="details.name"></ez-image>
+</ez-details-section>
+<router-outlet></router-outlet>

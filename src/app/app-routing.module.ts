@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CategoryComponent } from './category';
-import { MovieDetailsComponent } from './movie-details';
+import { MovieDetailsComponent, SeriesDetailsComponent } from './details';
+import { CastSectionComponent } from './details';
 import { PersonDetailsComponent } from './person-details';
 
 const routes: Routes = [
@@ -20,11 +21,26 @@ const routes: Routes = [
     ],
   },
   {
-    path: ':media',
+    path: 'movie',
     children: [
       {
         path: ':id',
         component: MovieDetailsComponent,
+      },
+    ],
+  },
+  {
+    path: 'tv',
+    children: [
+      {
+        path: ':id',
+        component: SeriesDetailsComponent,
+        children: [
+          {
+            path: 'cast',
+            component: CastSectionComponent,
+          },
+        ],
       },
     ],
   },
