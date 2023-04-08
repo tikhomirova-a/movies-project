@@ -10,4 +10,26 @@
     [width]="300"
     [title]="details.name"></ez-image>
 </ez-details-section>
-<router-outlet></router-outlet>
+<div>
+  <ul class="tabs">
+    <li>
+      <a
+        class="tab"
+        routerLink="cast"
+        routerLinkActive="tab--active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        >Cast</a
+      >
+    </li>
+    <li>
+      <a
+        class="tab"
+        routerLink="crew"
+        routerLinkActive="tab--active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        >Crew</a
+      >
+    </li>
+  </ul>
+  <router-outlet></router-outlet>
+</div>

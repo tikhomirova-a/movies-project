@@ -16,7 +16,7 @@ export class CastSectionComponent {
     private readonly route: ActivatedRoute
   ) {}
 
-  public cast$ = this.route.paramMap.pipe(
+  public cast$ = this.route.parent?.paramMap.pipe(
     switchMap((params) => this.requestCredits(params.get('id'))),
     map((response) => response.cast)
   );

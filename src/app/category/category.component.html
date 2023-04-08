@@ -1,48 +1,46 @@
-<div class="page-grid">
-  <section>
-    <h2 class="container">Trending</h2>
-    <ul class="container scroll-list">
-      <li
-        class="scroll-list-item"
-        *ngFor="let item of trendingContent$ | async; trackBy: trackCategory">
-        <ez-movie-card
-          *ngIf="item.media_type === 'movie'"
-          [movie]="item"></ez-movie-card>
-        <ez-series-card
-          *ngIf="item.media_type === 'tv'"
-          [series]="item"></ez-series-card>
-        <ez-person-card
-          *ngIf="item.media_type === 'person'"
-          [person]="item"></ez-person-card>
-      </li>
-    </ul>
-  </section>
+<section>
+  <h2 class="container">Trending</h2>
+  <ul class="container scroll-list">
+    <li
+      class="scroll-list-item"
+      *ngFor="let item of trendingContent$ | async; trackBy: trackCategory">
+      <ez-movie-card
+        *ngIf="item.media_type === 'movie'"
+        [movie]="item"></ez-movie-card>
+      <ez-series-card
+        *ngIf="item.media_type === 'tv'"
+        [series]="item"></ez-series-card>
+      <ez-person-card
+        *ngIf="item.media_type === 'person'"
+        [person]="item"></ez-person-card>
+    </li>
+  </ul>
+</section>
 
-  <section>
-    <h2 class="container">Popular</h2>
-    <ul class="container scroll-list">
-      <li
-        class="scroll-list-item"
-        *ngFor="let item of popularContent$ | async; trackBy: trackCategory"
-        [ngSwitch]="item.media_type">
-        <ez-movie-card
-          *ngIf="item.media_type === 'movie'"
-          [movie]="item"></ez-movie-card>
-        <ez-series-card
-          *ngIf="item.media_type === 'tv'"
-          [series]="item"></ez-series-card>
-      </li>
-    </ul>
-  </section>
+<section>
+  <h2 class="container">Popular</h2>
+  <ul class="container scroll-list">
+    <li
+      class="scroll-list-item"
+      *ngFor="let item of popularContent$ | async; trackBy: trackCategory"
+      [ngSwitch]="item.media_type">
+      <ez-movie-card
+        *ngIf="item.media_type === 'movie'"
+        [movie]="item"></ez-movie-card>
+      <ez-series-card
+        *ngIf="item.media_type === 'tv'"
+        [series]="item"></ez-series-card>
+    </li>
+  </ul>
+</section>
 
-  <section>
-    <h2 class="container">Upcoming Movies</h2>
-    <ul class="container scroll-list">
-      <li
-        class="scroll-list-item"
-        *ngFor="let item of upcomingContent$ | async; trackBy: trackCategory">
-        <ez-movie-card [movie]="item"></ez-movie-card>
-      </li>
-    </ul>
-  </section>
-</div>
+<section>
+  <h2 class="container">Upcoming Movies</h2>
+  <ul class="container scroll-list">
+    <li
+      class="scroll-list-item"
+      *ngFor="let item of upcomingContent$ | async; trackBy: trackCategory">
+      <ez-movie-card [movie]="item"></ez-movie-card>
+    </li>
+  </ul>
+</section>

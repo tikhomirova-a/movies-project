@@ -1,7 +1,5 @@
 <ul class="container scroll-list">
-  <li
-    class="scroll-list-item"
-    *ngFor="let person of cast$ | async; trackBy: trackPerson">
+  <li class="scroll-list-item" *ngFor="let person of crew$ | async">
     <ez-person-card [person]="person"></ez-person-card>
   </li>
 </ul>

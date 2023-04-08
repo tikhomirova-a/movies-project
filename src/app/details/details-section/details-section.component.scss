@@ -16,3 +16,26 @@
   flex-wrap: wrap;
   gap: 0.6rem;
 }
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  padding-top: 0.8em;
+  padding-bottom: 0.8em;
+  transition: color 0.3s;
+
+  &::before {
+    content: '\02190';
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      color: rgb(var(--ez-green-100));
+    }
+  }
+
+  &:active {
+    color: rgb(var(--ez-green-500));
+  }
+}

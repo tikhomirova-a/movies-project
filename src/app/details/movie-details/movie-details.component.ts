@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { DetailsApiService } from '../details-api.service';
 import { ActivatedRoute } from '@angular/router';
-import { EMPTY, Observable, map, shareReplay, mergeAll, switchMap } from 'rxjs';
-import { Credits, MovieDetails, SeriesDetails } from '../types';
+import { EMPTY, Observable, map, shareReplay, switchMap } from 'rxjs';
+import { Credits, MovieDetails } from '../types';
 
 @Component({
   selector: 'ez-movie-details',

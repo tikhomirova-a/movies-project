@@ -17,7 +17,7 @@ html {
 }
 
 :root {
-  --container-padding: max(1.2rem, 3vw);
+  --ez-container-padding: max(1.2rem, 3vw);
 }
 
 body {
@@ -28,6 +28,7 @@ h1 {
   margin-block-start: 1.8rem;
   margin-block-end: 1.8rem;
   font-weight: 500;
+  font-size: 2rem;
 }
 
 h2 {
@@ -72,5 +73,5 @@ a {
 }
 
 .container {
-  padding: 0 var(--container-padding);
+  padding: 0 var(--ez-container-padding);
 }
