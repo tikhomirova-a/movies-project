@@ -1,35 +1,55 @@
-<ez-details-section
-  *ngIf="details$ | async as details"
-  [title]="details.name"
-  [genres]="details.genres"
-  [date]="details.first_air_date"
-  [overview]="details.overview">
-  <ez-image
-    [path]="details.poster_path"
-    type="poster"
-    [width]="300"
-    [title]="details.name"></ez-image>
-</ez-details-section>
-<div>
-  <ul class="tabs">
-    <li>
-      <a
-        class="tab"
-        routerLink="cast"
-        routerLinkActive="tab--active"
-        [routerLinkActiveOptions]="{ exact: true }"
-        >Cast</a
-      >
-    </li>
-    <li>
-      <a
-        class="tab"
-        routerLink="crew"
-        routerLinkActive="tab--active"
-        [routerLinkActiveOptions]="{ exact: true }"
-        >Crew</a
-      >
-    </li>
-  </ul>
-  <router-outlet></router-outlet>
-</div>
+<ng-container *ngIf="details$ | async as details">
+  <ez-details-section
+    [title]="details.name"
+    [genres]="details.genres"
+    [date]="details.first_air_date"
+    [overview]="details.overview">
+    <ez-image
+      [path]="details.poster_path"
+      type="poster"
+      [width]="300"
+      [title]="details.name"></ez-image>
+  </ez-details-section>
+  <div class="container">
+    <h2>Seasons</h2>
+    <ul>
+      <li class="season" *ngFor="let season of details.seasons">
+        <ez-image
+          class="season__image"
+          [path]="season.poster_path"
+          type="poster"></ez-image>
+        <div class="season__info">
+          <h3 class="season__title">
+            {{ season.name }}
+            <span class="font-small font-400"
+              >{{ season.air_date | date : 'yyyy' }} |
+              {{ season.episode_count }} episodes</span
+            >
+          </h3>
+          <p class="season__overview">{{ season.overview }}</p>
+        </div>
+      </li>
+    </ul>
+  </div>
+</ng-container>
+<ul class="tabs">
+  <li>
+    <a
+      class="tab"
+      routerLink="cast"
+      routerLinkActive="tab--active"
+      [routerLinkActiveOptions]="{ exact: true }"
+      >Cast</a
+    >
+  </li>
+  <li>
+    <a
+      class="tab"
+      routerLink="crew"
+      routerLinkActive="tab--active"
+      [routerLinkActiveOptions]="{ exact: true }"
+      >Crew</a
+    >
+  </li>
+</ul>
+<router-outlet></router-outlet>
