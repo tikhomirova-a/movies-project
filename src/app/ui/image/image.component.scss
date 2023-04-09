@@ -3,3 +3,10 @@
   background-color: rgb(var(--ez-green-100));
   aspect-ratio: var(--ez-img-aspect-ratio);
 }
+
+.image {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  object-position: center;
+}

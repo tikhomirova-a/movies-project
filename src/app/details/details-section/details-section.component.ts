@@ -11,4 +11,5 @@ export class DetailsSectionComponent {
   @Input() public genres?: Genre[];
   @Input() public overview = '';
   @Input() public date?: Date;
+  @Input() public backdrop?: string;
 }
