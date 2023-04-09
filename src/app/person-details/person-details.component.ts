@@ -16,19 +16,22 @@ export class PersonDetailsComponent {
   ) {}
 
   public person$ = this.activatedRoute.paramMap.pipe(
-    switchMap((paramMap) => this.requestDetails(paramMap.get('id')))
+    switchMap((paramMap) => this.requestDetails(paramMap.get('id'))),
+    shareReplay()
   );
 
-  public credits$ = this.person$.pipe(
-    map((details: PersonDetailsWCredits) =>
-      details.combined_credits.cast.concat(details.combined_credits.crew)
-    )
+  public cast$ = this.person$.pipe(
+    map((details: PersonDetailsWCredits) => details.combined_credits.cast)
+  );
+
+  public crew$ = this.person$.pipe(
+    map((details: PersonDetailsWCredits) => details.combined_credits.crew)
   );
 
   private requestDetails(id: string | null): Observable<PersonDetailsWCredits> {
     if (!id) {
       return EMPTY;
     }
-    return this.api.requestPersonDetails(id).pipe(shareReplay());
+    return this.api.requestPersonDetails(id);
   }
 }

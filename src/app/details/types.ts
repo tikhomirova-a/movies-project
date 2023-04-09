@@ -60,7 +60,7 @@ export interface Credits {
 
 export interface SeriesDetails {
   adult: boolean;
-  backdrop_path: null;
+  backdrop_path: string;
   created_by: Creator[];
   episode_run_time: number[];
   first_air_date: Date;
