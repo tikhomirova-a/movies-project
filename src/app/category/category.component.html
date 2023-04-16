@@ -10,9 +10,11 @@
       <ez-series-card
         *ngIf="item.media_type === 'tv'"
         [series]="item"></ez-series-card>
-      <ez-person-card
-        *ngIf="item.media_type === 'person'"
-        [person]="item"></ez-person-card>
+      <ez-person-card *ngIf="item.media_type === 'person'" [person]="item">
+        <ng-container ngProjectAs="role">{{
+          item.known_for_department
+        }}</ng-container>
+      </ez-person-card>
     </li>
   </ul>
 </section>

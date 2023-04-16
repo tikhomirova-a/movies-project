@@ -4,11 +4,11 @@
       [path]="series.poster_path"
       type="poster"
       [title]="series.name"></ez-image>
-    <ez-card-details [title]="series.name" [rating]="series.vote_average">
-      <ng-container ngProjectAs="note">
-        {{ series.first_air_date | date : 'mediumDate' }}
-      </ng-container>
+    <ez-card-details
+      [title]="series.name"
+      [rating]="series.vote_average"
+      [date]="series.first_air_date">
     </ez-card-details>
-    <ng-content select="[additional]"></ng-content>
+    <ng-content additional select="role"></ng-content>
   </ez-card>
 </a>

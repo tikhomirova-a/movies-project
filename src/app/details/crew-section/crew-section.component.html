@@ -1,5 +1,9 @@
 <ul class="container scroll-list">
   <li class="scroll-list-item" *ngFor="let person of crew$ | async">
-    <ez-person-card [person]="person"></ez-person-card>
+    <ez-person-card [person]="person">
+      <ng-container ngProjectAs="role"
+        >{{ person.department }}: {{ person.job }}</ng-container
+      >
+    </ez-person-card>
   </li>
 </ul>

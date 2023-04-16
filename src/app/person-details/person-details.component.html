@@ -25,14 +25,10 @@
     <ul class="container scroll-list">
       <li class="scroll-list-item" *ngFor="let item of cast$ | async">
         <ez-movie-card *ngIf="item.media_type === 'movie'" [movie]="item">
-          <ng-container ngProjectAs="additional">{{
-            item.character
-          }}</ng-container>
+          <ng-container ngProjectAs="role">{{ item.character }}</ng-container>
         </ez-movie-card>
         <ez-series-card *ngIf="item.media_type === 'tv'" [series]="item">
-          <ng-container ngProjectAs="additional">{{
-            item.character
-          }}</ng-container>
+          <ng-container ngProjectAs="role">{{ item.character }}</ng-container>
         </ez-series-card>
       </li>
     </ul>
@@ -42,10 +38,14 @@
     <ul class="container scroll-list">
       <li class="scroll-list-item" *ngFor="let item of crew$ | async">
         <ez-movie-card *ngIf="item.media_type === 'movie'" [movie]="item">
-          <ng-container ngProjectAs="additional">{{ item.job }}</ng-container>
+          <ng-container ngProjectAs="role"
+            >{{ item.department }}: {{ item.job }}</ng-container
+          >
         </ez-movie-card>
         <ez-series-card *ngIf="item.media_type === 'tv'" [series]="item">
-          <ng-container ngProjectAs="additional">{{ item.job }}</ng-container>
+          <ng-container ngProjectAs="role"
+            >{{ item.department }}: {{ item.job }}</ng-container
+          >
         </ez-series-card>
       </li>
     </ul>
