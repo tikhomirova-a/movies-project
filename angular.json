@@ -48,8 +48,7 @@
             "inlineStyleLanguage": "scss",
             "assets": ["src/favicon.ico", "src/assets"],
             "styles": ["src/styles.scss"],
-            "scripts": [],
-            "baseHref": "/movies-project/"
+            "scripts": []
           },
           "configurations": {
             "production": {
@@ -65,7 +64,8 @@
                   "maximumError": "4kb"
                 }
               ],
-              "outputHashing": "all"
+              "outputHashing": "all",
+              "baseHref": "/movies-project/"
             },
             "development": {
               "buildOptimizer": false,
