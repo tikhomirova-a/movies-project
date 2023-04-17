@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { EMPTY, map, Observable, switchMap } from 'rxjs';
+import { Person } from 'src/app/category/types';
 import { DetailsApiService } from '../details-api.service';
 import { Credits } from '../types';
 
@@ -21,6 +22,10 @@ export class CrewSectionComponent {
     switchMap((params) => this.requestCrew(params.get('id'))),
     map((response: Credits) => response.crew)
   );
+
+  public trackPerson(_: number, person: Person): Person['id'] {
+    return person.id;
+  }
 
   private requestCrew(id: string | null): Observable<Credits> {
     if (!id) {

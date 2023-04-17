@@ -51,6 +51,7 @@ export interface Person {
   order?: number;
   department?: Department;
   job?: string;
+  jobs: string[];
 }
 
 export enum Department {

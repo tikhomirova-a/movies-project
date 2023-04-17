@@ -27,7 +27,7 @@
       <li class="scroll-list-item" *ngFor="let person of crew$ | async">
         <ez-person-card [person]="person">
           <ng-container ngProjectAs="role"
-            >{{ person.department }}: {{ person.job }}</ng-container
+            >{{ person.department }}: {{ person.jobs.join(', ') }}</ng-container
           >
         </ez-person-card>
       </li>
