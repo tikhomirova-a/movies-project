@@ -1,11 +1,14 @@
-<ez-card *ngIf="movie">
-  <ez-image
-    [path]="movie.poster_path"
-    type="poster"
-    [title]="movie.title"></ez-image>
-  <ez-card-details [title]="movie.title" [rating]="movie.vote_average">
-    <ng-container ngProjectAs="note">
-      {{ movie.release_date | date : 'mediumDate' }}
-    </ng-container>
-  </ez-card-details>
-</ez-card>
+<a class="card-link" *ngIf="movie" [routerLink]="['/', 'movie', movie.id]">
+  <ez-card>
+    <ez-image
+      [path]="movie.poster_path"
+      type="poster"
+      [title]="movie.title"></ez-image>
+    <ez-card-details
+      [title]="movie.title"
+      [rating]="movie.vote_average"
+      [date]="movie.release_date">
+    </ez-card-details>
+    <ng-content additional select="role"></ng-content>
+  </ez-card>
+</a>

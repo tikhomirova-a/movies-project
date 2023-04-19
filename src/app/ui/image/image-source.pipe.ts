@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Images } from 'src/app/infrastructure/configuration/types';
+import { Images } from '../../infrastructure/configuration/types';
 
 @Pipe({
   name: 'imageSource',

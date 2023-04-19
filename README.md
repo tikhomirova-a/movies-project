@@ -1,10 +1,20 @@
 # MoviesProject
 
+You can view the latest deployed version [here](https://tikhomirova-a.github.io/movies-project/).
+
+---
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.1.
 
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+
+## Deploy project to gh-pages
+
+Run `npm run deploy` to build the project, create 404.html, commit and push the changes.
+
+*Why copying index.html to 404.html? Find more info [here](https://angular.io/guide/deployment#deploy-to-github-pages).*
 
 ## Code scaffolding
 

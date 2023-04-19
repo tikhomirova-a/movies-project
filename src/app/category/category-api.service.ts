@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Response, Movie, Series, Person } from './types';
+import { Movie, Series, Person } from './types';
+import { Response } from '../infrastructure/http/types';
 import { HttpClient } from '@angular/common/http';
 import { Observable, map, forkJoin } from 'rxjs';
 

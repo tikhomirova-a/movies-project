@@ -7,7 +7,7 @@ import {
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Configuration } from '../configuration/types';
-import { Response } from '../../category/types';
+import { Response } from './types';
 
 const API_KEY = '09f328da5aa5d91f51978506a62cc80e';
 

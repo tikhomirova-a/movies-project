@@ -1,0 +1,24 @@
+<a routerLink="/" class="container back-link">Back to all categories</a>
+<section class="container details">
+  <ez-image
+    class="backdrop-image"
+    *ngIf="backdrop"
+    [path]="backdrop"
+    type="backdrop"
+    aria-hidden="true"
+    [width]="780"
+    [aspectRatio]="16 / 9"></ez-image>
+  <div class="image-wrapper">
+    <ng-content select="ez-image"></ng-content>
+  </div>
+  <div class="description">
+    <h1>{{ title }}</h1>
+    <p class="font-small">Premiere Date: {{ date | date : 'shortDate' }}</p>
+    <ul class="genres font-small" *ngIf="genres?.length">
+      Genres:
+      <li *ngFor="let genre of genres">{{ genre.name }}</li>
+    </ul>
+    <p class="font-500">Overview</p>
+    <p>{{ overview }}</p>
+  </div>
+</section>
