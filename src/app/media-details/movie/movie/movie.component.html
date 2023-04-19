@@ -1,0 +1,21 @@
+<ng-container *ngIf="details$ | async as details">
+  <ez-base-details
+    [title]="details.title"
+    [genres]="details.genres"
+    [date]="details.release_date"
+    [overview]="details.overview"
+    [backdrop]="details.backdrop_path">
+    <ez-image
+      [path]="details.poster_path"
+      type="poster"
+      [width]="300"
+      [title]="details.title"></ez-image>
+  </ez-base-details>
+</ng-container>
+<a
+  class="container link link--forward"
+  routerLink="credits"
+  routerLinkActive="hidden"
+  >Show cast and crew</a
+>
+<router-outlet></router-outlet>

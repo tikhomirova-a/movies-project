@@ -1,0 +1,43 @@
+:host {
+  --ez-link-color: rgb(var(--ez-base-light));
+
+  position: relative;
+  overflow: hidden;
+  display: block;
+  padding: 1rem 0 1.5rem;
+  background-color: rgb(var(--ez-base-dark) / 0.8);
+}
+
+.details {
+  display: grid;
+  grid-gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(300px, max-content));
+  align-items: start;
+  justify-items: center;
+  color: rgb(var(--ez-base-light));
+}
+
+.description {
+  display: grid;
+  grid-gap: 1rem;
+}
+
+.genres {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.backdrop-image {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+}
+
+.image-wrapper {
+  overflow: hidden;
+  width: 300px;
+  border-radius: 0.6rem;
+}

@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CategoryComponent } from './category';
-import { MovieDetailsComponent, SeriesDetailsComponent } from './details';
+import { SeriesDetailsComponent } from './details';
 import { CastSectionComponent } from './details';
 import { CrewSectionComponent } from './details/crew-section/crew-section.component';
+import { MovieComponent, MovieCreditsComponent } from './media-details/movie';
 import { PersonDetailsComponent } from './person-details';
 
 const routes: Routes = [
@@ -21,7 +22,13 @@ const routes: Routes = [
       },
       {
         path: 'movie/:id',
-        component: MovieDetailsComponent,
+        component: MovieComponent,
+        children: [
+          {
+            path: 'credits',
+            component: MovieCreditsComponent,
+          },
+        ],
       },
       {
         path: 'tv/:id',

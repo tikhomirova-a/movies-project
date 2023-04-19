@@ -1,0 +1,27 @@
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  padding-top: 0.8em;
+  padding-bottom: 0.8em;
+  color: var(--ez-link-color, rgb(var(--ez-green-400)));
+  transition: color 0.3s;
+
+  &--back::before {
+    content: '\02190';
+  }
+
+  &--forward::after {
+    content: '\02192';
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      color: rgb(var(--ez-green-100));
+    }
+  }
+
+  &:active {
+    color: rgb(var(--ez-green-500));
+  }
+}

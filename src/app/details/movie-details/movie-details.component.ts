@@ -32,7 +32,6 @@ export class MovieDetailsComponent {
       const key = `${person.id.toString()}_${
         person.department?.toLowerCase() || ''
       }`;
-      console.log(key);
       if (map.has(key) && person.job) {
         map.get(key)?.jobs.push(person.job);
       } else if (!map.has(key)) {
@@ -42,7 +41,6 @@ export class MovieDetailsComponent {
         map.set(key, person);
       }
     }
-    console.log(Array.from(map.values()));
     return Array.from(map.values());
   }
 
