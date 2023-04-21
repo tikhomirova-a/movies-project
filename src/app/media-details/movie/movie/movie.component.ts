@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { EMPTY, Observable, switchMap } from 'rxjs';
-import { MovieDetails } from '../../types';
+import { EMPTY, map, Observable, shareReplay, switchMap } from 'rxjs';
+import { Movie, Series } from 'src/app/category/types';
+import { MovieDetails, Review } from '../../types';
 import { MovieApiService } from '../movie-api.service';
 
 @Component({
@@ -16,7 +17,16 @@ export class MovieComponent {
   ) {}
 
   public details$ = this.activatedRoute.paramMap.pipe(
-    switchMap((params) => this.requestMovieDetails(params.get('id')))
+    switchMap((params) => this.requestMovieDetails(params.get('id'))),
+    shareReplay()
+  );
+
+  public reviews$ = this.details$.pipe(
+    map((response) => response.reviews.results)
+  );
+
+  public recommendations$ = this.details$.pipe(
+    map((response) => response.recommendations.results)
   );
 
   private requestMovieDetails(id: string | null): Observable<MovieDetails> {
@@ -24,5 +34,16 @@ export class MovieComponent {
       return EMPTY;
     }
     return this.detailsApi.requestDetails(id);
+  }
+
+  public trackByReview(_: number, review: Review): Review['id'] {
+    return review.id;
+  }
+
+  public trackByRecommendation(
+    _: number,
+    recommendation: Movie | Series
+  ): Movie['id'] | Series['id'] {
+    return recommendation.id;
   }
 }

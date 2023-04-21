@@ -1,9 +1,9 @@
-import { Person } from '../category/types';
+import { Movie, Person, Series } from '../category/types';
 
 export interface MovieDetails {
   adult: boolean;
   backdrop_path: string;
-  belongs_to_collection: null;
+  belongs_to_collection: Collection;
   budget: number;
   genres: Genre[];
   homepage: string;
@@ -27,6 +27,46 @@ export interface MovieDetails {
   vote_average: number;
   vote_count: number;
   media_type?: 'movie';
+  recommendations: Recommendations;
+  reviews: Reviews;
+}
+
+export interface Recommendations {
+  page: number;
+  results: Array<Movie | Series>;
+  total_pages: number;
+  total_results: number;
+}
+
+export interface Reviews {
+  page: number;
+  results: Array<Review>;
+  total_pages: number;
+  total_results: number;
+}
+
+export interface Review {
+  author: string;
+  author_details: AuthorDetails;
+  content: string;
+  created_at: Date;
+  id: string;
+  updated_at: Date;
+  url: string;
+}
+
+export interface AuthorDetails {
+  name: string;
+  username: string;
+  avatar_path: string;
+  rating: number;
+}
+
+export interface Collection {
+  id: number;
+  name: string;
+  poster_path: string;
+  backdrop_path: string;
 }
 
 export interface Genre {
@@ -151,7 +191,7 @@ export interface Episode {
   still_path: null;
   vote_average: number;
   vote_count: number;
-  crew: any[];
+  crew: Person[];
   guest_stars: GuestStar[];
 }
 
