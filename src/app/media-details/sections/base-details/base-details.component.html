@@ -18,7 +18,9 @@
       Genres:
       <li *ngFor="let genre of genres">{{ genre.name }}</li>
     </ul>
-    <p class="font-500">Overview</p>
-    <p>{{ overview }}</p>
+    <ng-container *ngIf="overview">
+      <p class="font-500">Overview</p>
+      <p>{{ overview }}</p>
+    </ng-container>
   </div>
 </section>

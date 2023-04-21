@@ -1,17 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BaseDetailsModule } from '../base-details';
+import { SectionsModule } from '../sections';
 import { ImageModule } from '../../ui/image';
 import { RouterModule } from '@angular/router';
 import { MovieCreditsComponent } from './movie-credits/movie-credits.component';
 import { MovieComponent } from './movie/movie.component';
-import { UiCardsModule } from 'src/app/ui';
+import { UiCardsModule } from '../../ui';
 
 @NgModule({
   declarations: [MovieComponent, MovieCreditsComponent],
   imports: [
     CommonModule,
-    BaseDetailsModule,
+    SectionsModule,
     ImageModule,
     RouterModule,
     UiCardsModule,

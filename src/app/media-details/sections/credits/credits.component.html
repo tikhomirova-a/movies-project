@@ -1,0 +1,27 @@
+<a routerLink="../" class="container link link--back">Back to main</a>
+<section *ngIf="cast?.length">
+  <h2 class="container">Cast</h2>
+  <ul class="container scroll-list">
+    <li
+      class="scroll-list-item"
+      *ngFor="let person of cast; trackBy: trackPerson">
+      <ez-person-card [person]="person">
+        <ng-container ngProjectAs="role"> {{ person.character }}</ng-container>
+      </ez-person-card>
+    </li>
+  </ul>
+</section>
+<section *ngIf="crew?.length">
+  <h2 class="container">Crew</h2>
+  <ul class="container scroll-list">
+    <li
+      class="scroll-list-item"
+      *ngFor="let person of crew; trackBy: trackPerson">
+      <ez-person-card [person]="person">
+        <ng-container ngProjectAs="role"
+          >{{ person.department }}: {{ person.jobs.join(', ') }}</ng-container
+        >
+      </ez-person-card>
+    </li>
+  </ul>
+</section>

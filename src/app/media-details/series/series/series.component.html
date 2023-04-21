@@ -1,5 +1,5 @@
 <ng-container *ngIf="details$ | async as details">
-  <ez-details-section
+  <ez-base-details
     [title]="details.name"
     [genres]="details.genres"
     [date]="details.first_air_date"
@@ -10,7 +10,7 @@
       type="poster"
       [width]="300"
       [title]="details.name"></ez-image>
-  </ez-details-section>
+  </ez-base-details>
   <div class="container">
     <h2>Seasons</h2>
     <ul>
@@ -33,24 +33,9 @@
     </ul>
   </div>
 </ng-container>
-<ul class="tabs">
-  <li>
-    <a
-      class="tab"
-      routerLink="cast"
-      routerLinkActive="tab--active"
-      [routerLinkActiveOptions]="{ exact: true }"
-      >Cast</a
-    >
-  </li>
-  <li>
-    <a
-      class="tab"
-      routerLink="crew"
-      routerLinkActive="tab--active"
-      [routerLinkActiveOptions]="{ exact: true }"
-      >Crew</a
-    >
-  </li>
-</ul>
-<router-outlet></router-outlet>
+<a
+  class="container link link--forward"
+  routerLink="credits"
+  routerLinkActive="hidden"
+  >Cast and crew</a
+>

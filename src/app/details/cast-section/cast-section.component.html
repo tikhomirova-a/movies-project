@@ -1,9 +1,0 @@
-<ul class="container scroll-list">
-  <li
-    class="scroll-list-item"
-    *ngFor="let person of cast$ | async; trackBy: trackPerson">
-    <ez-person-card [person]="person">
-      <ng-container ngProjectAs="role"> {{ person.character }}</ng-container>
-    </ez-person-card>
-  </li>
-</ul>
