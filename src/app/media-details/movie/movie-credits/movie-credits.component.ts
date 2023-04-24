@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { EMPTY, map, Observable, shareReplay, switchMap } from 'rxjs';
+import { EMPTY, map, Observable, switchMap } from 'rxjs';
 import { Credits } from '../../types';
 import { MovieApiService } from '../movie-api.service';
 import { combineByDepartment } from '../../combineByDepartment';
@@ -16,15 +16,9 @@ export class MovieCreditsComponent {
     private readonly route: ActivatedRoute
   ) {}
 
-  private credits$ = this.route.parent?.paramMap.pipe(
+  public credits$ = this.route.parent?.paramMap.pipe(
     switchMap((params) => this.requestCredits(params.get('id'))),
-    shareReplay()
-  );
-
-  public cast$ = this.credits$?.pipe(map((response) => response.cast));
-
-  public crew$ = this.credits$?.pipe(
-    map((response) => combineByDepartment(response.crew))
+    map((response) => combineByDepartment(response))
   );
 
   private requestCredits(id: string | null): Observable<Credits> {

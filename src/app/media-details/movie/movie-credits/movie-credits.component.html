@@ -1,6 +1,1 @@
-<ng-container *ngIf="cast$ | async as cast">
-  <ez-credits
-    *ngIf="crew$ | async as crew"
-    [cast]="cast"
-    [crew]="crew"></ez-credits>
-</ng-container>
+<ez-credits [credits]="credits$ | async"></ez-credits>

@@ -1,8 +1,9 @@
 import { Person } from '../category/types';
+import { Credits } from './types';
 
-export function combineByDepartment(crew: Person[]): Person[] {
+export function combineByDepartment(credits: Credits): Credits {
   const map = new Map<string, Person>();
-  for (const person of crew) {
+  for (const person of credits.crew) {
     person.jobs = [];
     const key = `${person.id.toString()}_${
       person.department?.toLowerCase() || ''
@@ -16,5 +17,9 @@ export function combineByDepartment(crew: Person[]): Person[] {
       map.set(key, person);
     }
   }
-  return Array.from(map.values());
+  const crew = Array.from(map.values());
+  return {
+    ...credits,
+    crew: crew,
+  };
 }
