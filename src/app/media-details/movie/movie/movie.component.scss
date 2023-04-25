@@ -1,0 +1,32 @@
+:host {
+  --ez-scroll-list-columns: minmax(80%, 1fr);
+
+  display: grid;
+  grid-row-gap: 1rem;
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.review {
+  position: relative;
+  display: grid;
+  grid-row-gap: 0.8rem;
+  align-content: start;
+  max-height: 300px;
+  padding: 0 1rem 1rem 0;
+  overflow: hidden;
+  border-radius: 0.8rem;
+
+  &::after {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 30%;
+    background-image: linear-gradient(
+      to bottom,
+      rgb(var(--ez-base-light) / 0),
+      rgb(var(--ez-base-light) / 0.6) 50%,
+      rgb(var(--ez-base-light)) 90%
+    );
+    content: '';
+  }
+}

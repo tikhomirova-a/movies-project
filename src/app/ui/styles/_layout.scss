@@ -18,4 +18,12 @@
       display: none;
     }
   }
+
+  &--fixed-width {
+    grid-auto-columns: var(--ez-scroll-list-columns);
+  }
+}
+
+.hidden {
+  display: none;
 }

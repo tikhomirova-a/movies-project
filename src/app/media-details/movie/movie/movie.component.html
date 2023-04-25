@@ -1,0 +1,57 @@
+<ng-container *ngIf="details$ | async as details">
+  <ez-base-details
+    [title]="details.title"
+    [genres]="details.genres"
+    [date]="details.release_date"
+    [overview]="details.overview"
+    [backdrop]="details.backdrop_path">
+    <ez-image
+      [path]="details.poster_path"
+      type="poster"
+      [width]="300"
+      [title]="details.title"></ez-image>
+  </ez-base-details>
+  <a
+    class="container link link--forward font-title"
+    routerLink="credits"
+    routerLinkActive="hidden"
+    >Cast and crew</a
+  >
+  <ng-container *ngIf="reviews$ | async as reviews">
+    <section *ngIf="reviews.length">
+      <h2 class="container">Reviews</h2>
+      <ul class="scroll-list scroll-list--fixed-width container">
+        <li
+          class="review scroll-list-item"
+          *ngFor="let review of reviews; trackBy: trackByReview">
+          <p class="font-500">A review by {{ review.author }}</p>
+          <p class="font-pale font-small" *ngIf="review.created_at">
+            Written on {{ review.created_at | date : 'longDate' }}
+          </p>
+          <p class="review__content" [innerHTML]="review.content"></p>
+        </li>
+      </ul>
+    </section>
+  </ng-container>
+
+  <ng-container *ngIf="recommendations$ | async as recommendations">
+    <section *ngIf="recommendations.length">
+      <h2 class="container">Recommendations</h2>
+      <ul class="scroll-list container">
+        <li
+          class="scroll-list-item"
+          *ngFor="
+            let recommendation of recommendations;
+            trackBy: trackByRecommendation
+          ">
+          <ez-movie-card
+            *ngIf="recommendation.media_type === 'movie'"
+            [movie]="recommendation"></ez-movie-card>
+          <ez-series-card
+            *ngIf="recommendation.media_type === 'tv'"
+            [series]="recommendation"></ez-series-card>
+        </li>
+      </ul>
+    </section>
+  </ng-container>
+</ng-container>

@@ -1,9 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CategoryComponent } from './category';
-import { MovieDetailsComponent, SeriesDetailsComponent } from './details';
-import { CastSectionComponent } from './details';
-import { CrewSectionComponent } from './details/crew-section/crew-section.component';
+import { MovieComponent, MovieCreditsComponent } from './media-details/movie';
+import {
+  SeriesComponent,
+  SeriesCreditsComponent,
+} from './media-details/series';
 import { PersonDetailsComponent } from './person-details';
 
 const routes: Routes = [
@@ -21,24 +23,29 @@ const routes: Routes = [
       },
       {
         path: 'movie/:id',
-        component: MovieDetailsComponent,
-      },
-      {
-        path: 'tv/:id',
-        component: SeriesDetailsComponent,
         children: [
-          {
-            path: 'cast',
-            component: CastSectionComponent,
-          },
-          {
-            path: 'crew',
-            component: CrewSectionComponent,
-          },
           {
             path: '',
             pathMatch: 'full',
-            redirectTo: 'cast',
+            component: MovieComponent,
+          },
+          {
+            path: 'credits',
+            component: MovieCreditsComponent,
+          },
+        ],
+      },
+      {
+        path: 'tv/:id',
+        children: [
+          {
+            path: '',
+            pathMatch: 'full',
+            component: SeriesComponent,
+          },
+          {
+            path: 'credits',
+            component: SeriesCreditsComponent,
           },
         ],
       },
