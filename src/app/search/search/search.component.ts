@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { debounceTime, map, Observable } from 'rxjs';
+import { debounceTime, distinctUntilChanged, map, Observable } from 'rxjs';
 import { Movie, Person, Series } from '../../category/types';
 import { SearchApiService } from '../search-api.service';
 import { SearchResult } from '../types';
@@ -22,6 +22,7 @@ export class SearchComponent {
     }
     this.results$ = this.api.search(value).pipe(
       debounceTime(200),
+      distinctUntilChanged(),
       map((response) => this.filterByMediaType(response.results))
     );
   }
