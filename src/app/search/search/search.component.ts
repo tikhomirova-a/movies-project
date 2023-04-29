@@ -1,5 +1,12 @@
-import { Component } from '@angular/core';
-import { debounceTime, distinctUntilChanged, map, Observable } from 'rxjs';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import {
+  debounceTime,
+  distinctUntilChanged,
+  map,
+  Observable,
+  Subscription,
+} from 'rxjs';
 import { Movie, Person, Series } from '../../category/types';
 import { SearchApiService } from '../search-api.service';
 import { SearchResult } from '../types';
@@ -9,22 +16,29 @@ import { SearchResult } from '../types';
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.scss'],
 })
-export class SearchComponent {
+export class SearchComponent implements OnInit, OnDestroy {
   constructor(private readonly api: SearchApiService) {}
 
+  public input = new FormControl('');
+  public subscription?: Subscription;
   public results$: Observable<SearchResult> | null = null;
 
-  public onKeyUp(event: KeyboardEvent) {
-    const value = (event.target as HTMLInputElement).value;
-    if (value.length <= 2) {
-      this.results$ = null;
-      return;
-    }
-    this.results$ = this.api.search(value).pipe(
-      debounceTime(200),
-      distinctUntilChanged(),
-      map((response) => this.filterByMediaType(response.results))
-    );
+  ngOnInit() {
+    this.subscription = this.input.valueChanges
+      .pipe(debounceTime(200), distinctUntilChanged())
+      .subscribe((value) => {
+        if (!value || value.length <= 2) {
+          this.results$ = null;
+          return;
+        }
+        this.results$ = this.api
+          .search(value)
+          .pipe(map((response) => this.filterByMediaType(response.results)));
+      });
+  }
+
+  ngOnDestroy() {
+    this.subscription?.unsubscribe();
   }
 
   private filterByMediaType(
@@ -33,7 +47,7 @@ export class SearchComponent {
     const movies: Array<Movie> = [];
     const series: Array<Series> = [];
     const people: Array<Person> = [];
-    results.map((item) => {
+    for (const item of results) {
       switch (item.media_type) {
         case 'movie':
           movies.push(item);
@@ -45,7 +59,7 @@ export class SearchComponent {
           people.push(item);
           break;
       }
-    });
+    }
     return {
       movies,
       series,

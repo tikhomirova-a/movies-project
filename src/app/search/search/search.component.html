@@ -20,7 +20,7 @@
     id="search"
     type="text"
     placeholder="Search for a movie, a tv show or a person"
-    (keyup)="onKeyUp($event)" />
+    [formControl]="input" />
 </div>
 <div *ngIf="results$ | async as results" class="container results">
   <ng-container *ngIf="results.movies.length">
