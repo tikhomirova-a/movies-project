@@ -24,17 +24,19 @@ export class SearchComponent implements OnInit, OnDestroy {
   public results$: Observable<SearchResult> | null = null;
 
   ngOnInit() {
-    this.subscription = this.input.valueChanges
-      .pipe(debounceTime(200), distinctUntilChanged())
-      .subscribe((value) => {
+    const searchObservable = this.input.valueChanges.pipe(
+      debounceTime(200),
+      distinctUntilChanged(),
+      map((value) => {
         if (!value || value.length <= 2) {
-          this.results$ = null;
-          return;
+          return null;
         }
-        this.results$ = this.api
+        return this.api
           .search(value)
           .pipe(map((response) => this.filterByMediaType(response.results)));
-      });
+      })
+    );
+    this.subscription = searchObservable.subscribe((x) => (this.results$ = x));
   }
 
   ngOnDestroy() {
