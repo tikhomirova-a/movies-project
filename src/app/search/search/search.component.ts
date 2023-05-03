@@ -1,11 +1,12 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import {
   debounceTime,
   distinctUntilChanged,
   map,
-  Observable,
+  of,
   Subscription,
+  switchMap,
 } from 'rxjs';
 import { Movie, Person, Series } from '../../category/types';
 import { SearchApiService } from '../search-api.service';
@@ -16,32 +17,23 @@ import { SearchResult } from '../types';
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.scss'],
 })
-export class SearchComponent implements OnInit, OnDestroy {
+export class SearchComponent {
   constructor(private readonly api: SearchApiService) {}
 
   public input = new FormControl('');
   public subscription?: Subscription;
-  public results$: Observable<SearchResult> | null = null;
-
-  ngOnInit() {
-    const searchObservable = this.input.valueChanges.pipe(
-      debounceTime(200),
-      distinctUntilChanged(),
-      map((value) => {
-        if (!value || value.length <= 2) {
-          return null;
-        }
-        return this.api
-          .search(value)
-          .pipe(map((response) => this.filterByMediaType(response.results)));
-      })
-    );
-    this.subscription = searchObservable.subscribe((x) => (this.results$ = x));
-  }
-
-  ngOnDestroy() {
-    this.subscription?.unsubscribe();
-  }
+  public results$ = this.input.valueChanges.pipe(
+    debounceTime(200),
+    distinctUntilChanged(),
+    switchMap((value) => {
+      if (!value || value.length <= 2) {
+        return of(null);
+      }
+      return this.api
+        .search(value)
+        .pipe(map((response) => this.filterByMediaType(response.results)));
+    })
+  );
 
   private filterByMediaType(
     results: Array<Person | Movie | Series>
