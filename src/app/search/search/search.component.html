@@ -1,0 +1,75 @@
+<div class="search-block container">
+  <label
+    class="search-block__label"
+    for="search"
+    aria-label="Start typing to search for a movie, a tv show or a person">
+    <svg
+      width="30"
+      height="30"
+      xmlns="http://www.w3.org/2000/svg"
+      xml:space="preserve"
+      viewBox="0 0 490.4 490.4"
+      aria-hidden="true">
+      <path
+        d="m484.1 454.796-110.5-110.6c29.8-36.3 47.6-82.8 47.6-133.4 0-116.3-94.3-210.6-210.6-210.6S0 94.496 0 210.796s94.3 210.6 210.6 210.6c50.8 0 97.4-18 133.8-48l110.5 110.5c12.9 11.8 25 4.2 29.2 0 8.4-8.3 8.4-20.8 0-29.1zm-443-244c0-93.6 75.9-169.5 169.5-169.5s169.6 75.9 169.6 169.5-75.9 169.5-169.5 169.5-169.6-75.9-169.6-169.5z" />
+    </svg>
+  </label>
+  <input
+    class="search-block__input"
+    #search
+    id="search"
+    type="text"
+    placeholder="Search for a movie, a tv show or a person"
+    [formControl]="input" />
+</div>
+<div *ngIf="results$ | async as results" class="container results">
+  <ng-container *ngIf="results.movies.length">
+    <p class="font-title">
+      Search results in category <span class="font-500">Movies</span>
+    </p>
+    <div class="result-list">
+      <ul class="scroll-list">
+        <li
+          class="scroll-list-item"
+          *ngFor="let item of results.movies; trackBy: trackByMediaItem">
+          <ez-movie-card [movie]="item"></ez-movie-card>
+        </li>
+      </ul>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="results.series.length">
+    <p class="font-title">
+      Search results in category <span class="font-500">TV Series</span>
+    </p>
+    <div class="result-list">
+      <ul class="scroll-list">
+        <li
+          class="scroll-list-item"
+          *ngFor="let item of results.series; trackBy: trackByMediaItem">
+          <ez-series-card [series]="item"></ez-series-card>
+        </li>
+      </ul>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="results.people.length">
+    <p class="font-title">
+      Search results in category <span class="font-500">People</span>
+    </p>
+    <div class="result-list">
+      <ul class="scroll-list">
+        <li
+          class="scroll-list-item"
+          *ngFor="let item of results.people; trackBy: trackByMediaItem">
+          <ez-person-card [person]="item"></ez-person-card>
+        </li>
+      </ul>
+    </div>
+  </ng-container>
+  <p
+    *ngIf="
+      !results.movies.length && !results.series.length && !results.people.length
+    ">
+    Sorry, no results that match your query "{{ search.value }}". Try again or
+    look in the categories below.
+  </p>
+</div>
