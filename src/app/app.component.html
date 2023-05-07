@@ -1,1 +1,44 @@
-<router-outlet></router-outlet>
+<header class="header">
+  <nav class="header__nav">
+    <a class="header__logo" routerLink="/" aria-label="To home page">
+      <img
+        src="/assets/images/logo.png"
+        width="60"
+        height="60"
+        alt="Movies Project" />
+      <p class="header__title">Movies Project</p></a
+    >
+    <a class="nav-link" [routerLink]="['/movie']">Discover movies</a>
+  </nav>
+</header>
+<div class="content">
+  <router-outlet></router-outlet>
+</div>
+<footer class="footer container">
+  <h3>Credits</h3>
+  <p>
+    <img
+      src="/assets/images/tmdb_logo.svg"
+      width="60"
+      height="20"
+      alt="The Movie Database (TMDB)" />
+    This product uses the
+    <a
+      class="link"
+      href="https://www.themoviedb.org/"
+      target="_blank"
+      rel="noopener noreferrer"
+      >TMDB API</a
+    >
+    but is not endorsed or certified by TMDB.
+  </p>
+  <p>
+    Project logo created by
+    <a
+      class="link"
+      href="https://www.flaticon.com/free-icons/camera"
+      title="camera icons"
+      >Freepik - Flaticon</a
+    >
+  </p>
+</footer>
