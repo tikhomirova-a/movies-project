@@ -1,0 +1,52 @@
+.discovery-page {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+.form {
+  flex: 200px 0 1;
+}
+
+.games-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  justify-items: center;
+  grid-gap: 0.8rem;
+  flex-grow: 1;
+}
+
+.genres {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.2rem;
+}
+
+.genre-field {
+  &__label {
+    display: inline-flex;
+    padding: 0.2em 0.4em;
+    color: rgb(var(--ez-green-400));
+    border-radius: 10px;
+    border: 1px solid rgb(var(--ez-green-100));
+    transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+
+    @media (pointer: fine) and (hover: hover) {
+      &:hover {
+        box-shadow: 1px 1px 3px 1px rgb(var(--ez-violet-400) / 0.2);
+      }
+    }
+
+    &:active {
+      box-shadow: none;
+    }
+
+    .genre-field__input:checked + & {
+      color: rgb(var(--ez-base-light));
+      background-color: rgb(var(--ez-green-100));
+    }
+  }
+}
