@@ -6,6 +6,7 @@ import {
   SeriesComponent,
   SeriesCreditsComponent,
 } from './media-details/series';
+import { MovieListComponent } from './movie-list';
 import { PersonDetailsComponent } from './person-details';
 
 const routes: Routes = [
@@ -48,6 +49,10 @@ const routes: Routes = [
             component: SeriesCreditsComponent,
           },
         ],
+      },
+      {
+        path: 'movie',
+        component: MovieListComponent,
       },
     ],
   },

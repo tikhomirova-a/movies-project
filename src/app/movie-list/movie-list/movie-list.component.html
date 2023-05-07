@@ -1,0 +1,22 @@
+<div class="discovery-page container">
+  <form class="form">
+    <div class="genres">
+      <label
+        class="genre-field"
+        *ngFor="let genre of genres$ | async"
+        [for]="genre.id">
+        <input
+          class="genre-field__input visually-hidden"
+          type="checkbox"
+          [id]="genre.id"
+          [value]="genre.id" />
+        <span class="genre-field__label">{{ genre.name }}</span>
+      </label>
+    </div>
+  </form>
+  <div class="games-grid">
+    <ez-movie-card
+      *ngFor="let movie of movies$ | async"
+      [movie]="movie"></ez-movie-card>
+  </div>
+</div>
